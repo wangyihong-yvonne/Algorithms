@@ -1,0 +1,30 @@
+class Solution {
+    public void rotate(int[] nums, int k) {
+        if (nums.length <= k) {
+            k = k % nums.length;
+        }  
+        if (k == 0) {
+            return;
+        }
+        int length = nums.length;
+        int rotate = nums.length - k;
+
+        int[] copy = new int[length];
+        System.arraycopy(nums, rotate, copy, 0,k );
+
+        int[] newl = new int[length];
+        newl = Arrays.copyOfRange(nums, 0, rotate);
+
+            int j = 0;
+        for (int i = 0; i < k; i++){
+            nums[i] = copy[j];
+            j++;
+        }
+       
+        int n = 0;
+        for (int m = k; m < length; m++){
+            nums[m] = newl[n];
+            n++;
+        }
+    }
+}
