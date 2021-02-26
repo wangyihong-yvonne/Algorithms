@@ -1,0 +1,39 @@
+class Solution {
+    public int compress(char[] chars) {        
+        //traverse the char array and count the same chars
+        if (chars.length == 1){
+            return 1;
+        }
+        String s = new String();
+        int count = 1;
+        int n = chars.length;
+        
+        for (int i = 1; i < n ; i++){
+            if (chars[i] == chars[i - 1]){
+                if (i != n - 1){
+                   count++; 
+                }else{
+                    count++;
+                    s += Character.toString(chars[i]);
+                    s += String.valueOf(count);
+                }
+            }else{
+                if (count != 1){
+                 s += Character.toString(chars[i - 1]);
+                 s += String.valueOf(count);
+                }else{
+                    s += Character.toString(chars[i - 1]);
+                }
+                 if (i == n - 1){
+                    s += Character.toString(chars[i]);
+                    }
+                count = 1;
+            }  
+        }
+        
+        for (int j = 0; j < s.length(); j++){
+                chars[j] = s.charAt(j);
+            }
+         return s.length();
+    }
+}
